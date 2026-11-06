@@ -3,13 +3,15 @@ name: CI
 on:
   pull_request:
     branches: [main, develop]
+    # ready_for_review: CI starts as soon as a draft is marked "Ready for review"
+    types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: [main, develop]
 
 permissions:
   contents: read
 
-# Bei neuem Push auf denselben PR/Branch den alten Lauf abbrechen
+# Cancel the previous run when a new push hits the same PR/branch
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -18,6 +20,8 @@ jobs:
   api:
     name: api
     runs-on: ubuntu-latest
+    # Skip on draft PRs to save runner minutes
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     defaults:
       run:
         working-directory: apps/api
@@ -39,13 +43,13 @@ jobs:
       - name: Format check
         run: npm run format:check
 
-      - name: Build (inkl. Typecheck)
+      - name: Build (includes typecheck)
         run: npm run build
 
       - name: Test
         run: npm test
 
-  # Später für die React-Native-App ergänzen (Lint, Typecheck, Jest), z. B.:
+  # Add later for the React Native app (lint, typecheck, Jest), e.g.:
   # mobile:
   #   name: mobile
   #   runs-on: ubuntu-latest
@@ -53,24 +57,25 @@ jobs:
   #     run:
   #       working-directory: apps/mobile
   #   steps: ...
-  # und "mobile" unten bei needs eintragen.
+  # and add "mobile" to needs below.
 
-  # Sammel-Check: Nur "build" wird im Ruleset als Required Check eingetragen.
-  # Neue Jobs kommen in "needs", das Ruleset muss dafür nicht angepasst werden.
+  # Aggregate check: only "build" is set as a required check in the ruleset.
+  # New jobs go into "needs"; the ruleset does not need to change.
   build:
     name: build
     runs-on: ubuntu-latest
     needs: [api]
-    if: always()
+    # always(): runs even if a job fails. Also skipped on drafts.
+    if: ${{ always() && (github.event_name != 'pull_request' || !github.event.pull_request.draft) }}
     steps:
       - name: Check results
         env:
           RESULTS: ${{ join(needs.*.result, ' ') }}
         run: |
-          echo "Job-Ergebnisse: $RESULTS"
+          echo "Job results: $RESULTS"
           for r in $RESULTS; do
             if [ "$r" != "success" ]; then
-              echo "::error::Mindestens ein CI-Job ist fehlgeschlagen ($r)"
+              echo "::error::At least one CI job failed ($r)"
               exit 1
             fi
           done

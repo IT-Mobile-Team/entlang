@@ -7,7 +7,7 @@ on:
 
 jobs:
   commitlint:
-    # Prüft jeden Commit im PR gegen commitlint.config.mjs
+    # Checks every commit in the PR against commitlint.config.mjs
     name: commitlint
     runs-on: ubuntu-latest
     steps:
@@ -19,7 +19,7 @@ jobs:
           configFile: commitlint.config.mjs
 
   pr-title:
-    # PR-Titel: wie Commit-Header, aber Keyword groß, z. B. "Feature: #ENT-13: Init NestJS with ESLint"
+    # PR title: like the commit header, but with a capitalized keyword, e.g. "Feature: #ENT-13: Init NestJS with ESLint"
     name: pr-title
     runs-on: ubuntu-latest
     steps:
@@ -29,14 +29,14 @@ jobs:
         run: |
           pattern='^(Build|Docs|Chore|Feature|Fix|Performance|Refactor|Revert|Security|Style|Test|Update): #[A-Z][A-Z0-9]*-[1-9][0-9]*: (\[breaking-change\] )?.+$'
           if [[ "$TITLE" =~ $pattern ]]; then
-            echo "PR-Titel ok: $TITLE"
+            echo "PR title ok: $TITLE"
           else
-            echo "::error::PR-Titel \"$TITLE\" entspricht nicht dem Format \"Feature: #ENT-13: Short description\""
+            echo "::error::PR title \"$TITLE\" does not match the format \"Feature: #ENT-13: Short description\""
             exit 1
           fi
 
   branch-name:
-    # Branch: feature/{identifier}-{title}, z. B. feature/ent-13-initial-setup-backend
+    # Branch: feature/{identifier}-{title}, e.g. feature/ent-13-initial-setup-backend
     name: branch-name
     runs-on: ubuntu-latest
     steps:
@@ -46,8 +46,8 @@ jobs:
         run: |
           pattern='^feature/[a-z][a-z0-9]*-[1-9][0-9]*-[a-z0-9]+(-[a-z0-9]+)*$'
           if [[ "$BRANCH" =~ $pattern ]]; then
-            echo "Branch-Name ok: $BRANCH"
+            echo "Branch name ok: $BRANCH"
           else
-            echo "::error::Branch \"$BRANCH\" entspricht nicht dem Format \"feature/ent-13-short-title\""
+            echo "::error::Branch \"$BRANCH\" does not match the format \"feature/ent-13-short-title\""
             exit 1
           fi
