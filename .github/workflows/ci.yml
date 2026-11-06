@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+permissions:
+  contents: read
+
+# Bei neuem Push auf denselben PR/Branch den alten Lauf abbrechen
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  api:
+    name: api
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/api
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: apps/api/package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Build (inkl. Typecheck)
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+  # Später für die React-Native-App ergänzen (Lint, Typecheck, Jest), z. B.:
+  # mobile:
+  #   name: mobile
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: apps/mobile
+  #   steps: ...
+  # und "mobile" unten bei needs eintragen.
+
+  # Sammel-Check: Nur "build" wird im Ruleset als Required Check eingetragen.
+  # Neue Jobs kommen in "needs", das Ruleset muss dafür nicht angepasst werden.
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    needs: [api]
+    if: always()
+    steps:
+      - name: Check results
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          echo "Job-Ergebnisse: $RESULTS"
+          for r in $RESULTS; do
+            if [ "$r" != "success" ]; then
+              echo "::error::Mindestens ein CI-Job ist fehlgeschlagen ($r)"
+              exit 1
+            fi
+          done

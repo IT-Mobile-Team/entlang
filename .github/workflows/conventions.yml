@@ -1,0 +1,53 @@
+name: Conventions
+
+on:
+  pull_request:
+    branches: [develop]
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+jobs:
+  commitlint:
+    # Prüft jeden Commit im PR gegen commitlint.config.mjs
+    name: commitlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v6
+        with:
+          configFile: commitlint.config.mjs
+
+  pr-title:
+    # PR-Titel: wie Commit-Header, aber Keyword groß, z. B. "Feature: #ENT-13: Init NestJS with ESLint"
+    name: pr-title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          pattern='^(Build|Docs|Chore|Feature|Fix|Performance|Refactor|Revert|Security|Style|Test|Update): #[A-Z][A-Z0-9]*-[1-9][0-9]*: (\[breaking-change\] )?.+$'
+          if [[ "$TITLE" =~ $pattern ]]; then
+            echo "PR-Titel ok: $TITLE"
+          else
+            echo "::error::PR-Titel \"$TITLE\" entspricht nicht dem Format \"Feature: #ENT-13: Short description\""
+            exit 1
+          fi
+
+  branch-name:
+    # Branch: feature/{identifier}-{title}, z. B. feature/ent-13-initial-setup-backend
+    name: branch-name
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        env:
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          pattern='^feature/[a-z][a-z0-9]*-[1-9][0-9]*-[a-z0-9]+(-[a-z0-9]+)*$'
+          if [[ "$BRANCH" =~ $pattern ]]; then
+            echo "Branch-Name ok: $BRANCH"
+          else
+            echo "::error::Branch \"$BRANCH\" entspricht nicht dem Format \"feature/ent-13-short-title\""
+            exit 1
+          fi
