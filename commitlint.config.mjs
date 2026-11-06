@@ -13,7 +13,14 @@ const TYPES = [
   'update',
 ];
 
+// Squash-Merge-Commits von GitHub: PR-Titel (Keyword groß) + " (#<PR-Nummer>)",
+// z. B. "Feature: #ENT-18: Update Docker setup (#12)". Diese werden nicht geprüft.
+const SQUASH_MERGE = /^[A-Z][a-z]+: #[A-Z][A-Z0-9]*-[1-9]\d*: .+ \(#\d+\)$/;
+
 export default {
+  // Zusätzlich zu den Standard-Ignores (z. B. "Merge branch ...")
+  ignores: [(message) => SQUASH_MERGE.test(message.split('\n')[0].trim())],
+
   parserPreset: {
     parserOpts: {
       headerPattern: /^(\w+): #([A-Z][A-Z0-9]*-[1-9]\d*): (\[breaking-change\] )?(.+)$/,
