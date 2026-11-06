@@ -8,14 +8,22 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql
+    networks:
+      - entlang_net
     restart: on-failure
   backend:
     build:
       context: ../apps/api
-      dockerfile: .
+      dockerfile: ../../infrastructure/Dockerfile
     depends_on:
     - db
     container_name: backend
     ports:
       - "3000:3000"
+    networks:
+      - entlang_net
     restart: on-failure
+volumes:
+  postgres_data:
+networks:
+  entlang_net:
