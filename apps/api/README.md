@@ -4,7 +4,7 @@ NestJS API for entlang.
 
 ## Prerequisites
 
-- Node.js 24 or a compatible version supported by the installed dependencies
+- Node.js 26.13.0 or newer in the Node.js 26 release line
 - npm
 
 ## Setup
@@ -12,7 +12,7 @@ NestJS API for entlang.
 Install dependencies:
 
 ```bash
-npm install
+npm ci
 ```
 
 Start the API in development watch mode:
@@ -66,7 +66,8 @@ npm test
 
 Use `npm run test:watch` during development when watch mode is useful.
 
-E2E testing is not currently configured.
+This package has unit tests only. E2E tests and E2E test configuration are not
+included.
 
 ## Configuration
 
