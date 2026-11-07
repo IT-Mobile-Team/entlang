@@ -1,0 +1,25 @@
+#!/bin/sh
+# Adds "Refs <TICKET>" to the commit message if it is missing.
+# The ticket is taken from the header, e.g. "feature: #ENT-13: Add Eslint" -> "Refs ENT-13".
+# Enable with: git config core.hooksPath .githooks
+
+msg_file="$1"
+header=$(head -n 1 "$msg_file")
+
+ticket=$(printf '%s\n' "$header" | sed -nE 's/^[a-z]+: #([A-Z][A-Z0-9]*-[1-9][0-9]*): .+$/\1/p')
+[ -z "$ticket" ] && exit 0   # no matching header (e.g. merge commit) -> do nothing
+
+if grep -qE "^Refs $ticket\b" "$msg_file"; then
+  exit 0
+fi
+
+# Ignore comment lines, check whether a body already exists
+body=$(tail -n +2 "$msg_file" | grep -v '^#' | tr -d '[:space:]')
+if [ -z "$body" ]; then
+  # Header only: header + blank line + Refs
+  { printf '%s\n\nRefs %s\n' "$header" "$ticket"; } > "$msg_file.tmp"
+else
+  # Body exists: put Refs right below the header
+  { printf '%s\n\nRefs %s\n\n' "$header" "$ticket"; tail -n +2 "$msg_file" | sed '1{/^$/d;}'; } > "$msg_file.tmp"
+fi
+mv "$msg_file.tmp" "$msg_file"

@@ -1,0 +1,49 @@
+{
+  "name": "@entlang/api",
+  "version": "0.0.1",
+  "description": "NestJS API for entlang.",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "prepare": "git config core.hooksPath .githooks || true",
+    "build": "nest build",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main.js",
+    "lint": "eslint \"src/**/*.ts\"",
+    "lint:fix": "eslint \"src/**/*.ts\" --fix",
+    "format": "prettier --write \".prettierrc\" \"README.md\" \"eslint.config.mjs\" \"nest-cli.json\" \"package.json\" \"src/**/*.ts\" \"tsconfig*.json\" \"vitest.config.ts\"",
+    "format:check": "prettier --check \".prettierrc\" \"README.md\" \"eslint.config.mjs\" \"nest-cli.json\" \"package.json\" \"src/**/*.ts\" \"tsconfig*.json\" \"vitest.config.ts\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cov": "vitest run --coverage",
+    "test:debug": "vitest --inspect-brk --no-file-parallelism"
+  },
+  "dependencies": {
+    "@nestjs/common": "^12.0.1",
+    "@nestjs/core": "^12.0.1",
+    "@nestjs/platform-express": "^12.0.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@nestjs/cli": "^12.0.0",
+    "@nestjs/schematics": "^12.0.0",
+    "@nestjs/testing": "^12.0.1",
+    "@types/express": "^5.0.0",
+    "@types/node": "^26.0.0",
+    "@vitest/coverage-v8": "^4.1.2",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.14.0",
+    "prettier": "^3.4.2",
+    "source-map-support": "^0.5.21",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^4.1.2"
+  }
+}

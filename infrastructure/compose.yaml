@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:18
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: passw0rd #leave it for dev purposes
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    networks:
+      - entlang_net
+    restart: on-failure
+  backend:
+    build:
+      context: ../apps/api
+      dockerfile: ../../infrastructure/Dockerfile
+    depends_on:
+    - db
+    container_name: backend
+    ports:
+      - "3000:3000"
+    networks:
+      - entlang_net
+    restart: on-failure
+volumes:
+  postgres_data:
+networks:
+  entlang_net:
