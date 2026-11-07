@@ -1,0 +1,6 @@
+#!/bin/sh
+# Run lint + format check only when files in apps/api are staged
+git diff --cached --name-only | grep -q '^apps/api/' || exit 0
+
+cd apps/api || exit 1
+npm run lint && npm run format:check
