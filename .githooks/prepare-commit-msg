@@ -1,0 +1,33 @@
+#!/bin/sh
+# Rewrites Git's default merge message to match our commit convention.
+# "Merge branch 'develop' into feature/ent-19-..." -> "update: #ENT-19: Merge develop"
+# The ticket is taken from the current branch name. Other commits are left alone.
+
+msg_file="$1"
+source="$2"
+
+[ "$source" = "merge" ] || exit 0
+
+branch=$(git symbolic-ref --short HEAD 2>/dev/null) || exit 0
+ticket=$(printf '%s\n' "$branch" | sed -nE 's#^feature/([a-z][a-z0-9]*-[1-9][0-9]*)-.*#\1#p' | tr '[:lower:]' '[:upper:]')
+[ -z "$ticket" ] && exit 0   # not a feature branch (e.g. develop) -> keep Git's message
+
+header=$(head -n 1 "$msg_file")
+# Already in our format (e.g. git merge -m "...")
+printf '%s\n' "$header" | grep -qE '^[a-z]+: #[A-Z][A-Z0-9]*-[1-9][0-9]*: ' && exit 0
+
+# Source: the quoted branch name, e.g. 'develop' or 'origin/develop'
+merged=$(printf '%s\n' "$header" | sed -nE "s/^Merge (remote-tracking )?branch '([^']+)'.*/\2/p")
+merged=${merged#origin/}
+
+if [ -z "$merged" ]; then
+  subject="Merge remote changes"
+elif [ "$merged" = "$branch" ]; then
+  subject="Merge remote changes"   # git pull on the same branch
+else
+  subject="Merge $merged"
+fi
+
+# New header + Git's original body (conflict list, comments)
+{ printf 'update: #%s: %s\n' "$ticket" "$subject"; tail -n +2 "$msg_file"; } > "$msg_file.tmp"
+mv "$msg_file.tmp" "$msg_file"
