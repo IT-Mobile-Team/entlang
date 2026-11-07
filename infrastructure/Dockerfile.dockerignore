@@ -1,0 +1,8 @@
+# Used for builds with infrastructure/Dockerfile (build context: repo root).
+# Paths are relative to the repo root.
+.git
+**/node_modules
+**/dist
+**/*.tsbuildinfo
+**/.env
+**/.env.*
