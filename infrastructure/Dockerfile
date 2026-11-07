@@ -4,11 +4,11 @@ ENV TZ=Europe/Vienna
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY apps/api/package*.json ./
 
 RUN npm ci
 
-COPY . .
+COPY apps/api ./
 
 RUN npm run build
 
