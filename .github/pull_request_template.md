@@ -9,4 +9,5 @@
 - [ ] `Closes ENT-<nr>` is at the top of the description
 - [ ] CI is green
 - [ ] Breaking changes marked with `[breaking-change]` (if any)
-- [ ] Docs / README updated if needed
+- [ ] `docs/history/ENT-<nr>.md` added (decisions, verification, open points)
+- [ ] Docs / README / AGENTS.md updated if behavior or conventions changed
