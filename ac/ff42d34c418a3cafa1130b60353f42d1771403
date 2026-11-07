@@ -1,0 +1,28 @@
+AGENTS.md
+  s_011e4da3f445e1::t_92918457659605 4,8,30-40,61
+.claude/skills/ent-finish/SKILL.md
+  s_011e4da3f445e1::t_92918457659605 14,29,37-38
+.claude/skills/ent-start/SKILL.md
+  s_011e4da3f445e1::t_92918457659605 18
+docs/README.md
+  s_011e4da3f445e1::t_92918457659605 3
+docs/history/ENT-16.md
+  s_011e4da3f445e1::t_588fbd681d4250 24-25,30-31
+  s_011e4da3f445e1::t_92918457659605 14,18-19,29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "acff42d34c418a3cafa1130b60353f42d1771403",
+  "prompts": {},
+  "sessions": {
+    "s_011e4da3f445e1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "78d1f8a8-c0d2-40da-9ede-73adebeacadf",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Jakob-ui <Jakoblaschober@gmail.com>"
+    }
+  }
+}
