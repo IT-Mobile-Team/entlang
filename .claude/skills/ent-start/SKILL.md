@@ -23,8 +23,7 @@ Follow the conventions in `AGENTS.md`. Stop and ask if the ticket is unclear or 
 - `git fetch origin develop` and branch off: `git switch -c feature/ent-<nr>-<short-title> origin/develop`
   (`<short-title>`: lowercase kebab-case, 2–5 words, from the ticket title).
 - If the branch already exists, switch to it instead.
-- Publish the branch early (Git Workflow): after the developer's OK, `git push -u origin <branch>`.
-  The draft PR is opened after the first feature commit (see `/ent-finish` step 4, or earlier with `gh pr create --draft`).
+- Never push. Tell the developer to publish the branch early (Git Workflow): `git push -u origin <branch>`.
 
 ## 3. Post the plan
 

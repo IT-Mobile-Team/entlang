@@ -21,6 +21,8 @@ and have context on what others built and why.
   Rejected for now: GitHub Spec Kit (too heavy), OpenSpec (extra tool; the history files cover the same need).
 - **Shared skills in `.claude/skills/`**: `/ent-start` and `/ent-finish` make every agent follow the same steps.
   Rejected: plugin marketplace (only worth it with several repos).
+- **Developers always commit and push themselves**: last line of defence against unauthorised automated pushes.
+  Enforced in Claude Code by deny rules and a PreToolUse hook, not only by instructions.
 - **git-ai for AI attribution**: line-level, automatic via agent hooks, stored in Git notes; a CI workflow
   keeps it through GitHub squash merges. Rejected: manual commit trailers (per commit only, easy to forget).
 

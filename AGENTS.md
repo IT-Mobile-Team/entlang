@@ -19,7 +19,8 @@ Every change belongs to a Linear ticket `ENT-<nr>`.
 
 1. `/ent-start ENT-<nr>` – read the ticket and related history, create the branch, post a plan to Linear.
 2. Implement together with the developer.
-3. `/ent-finish` – verify, write `docs/history/ENT-<nr>.md`, update dev docs, commit, open the PR.
+3. `/ent-finish` – verify, write `docs/history/ENT-<nr>.md`, update dev docs, prepare commit message and PR text.
+4. The developer commits and pushes.
 
 Without the skills (other agents): follow the steps in `.claude/skills/ent-start/SKILL.md` and
 `.claude/skills/ent-finish/SKILL.md` manually.
@@ -49,7 +50,9 @@ Enforced by `commitlint.config.mjs`, `.githooks/` and `.github/workflows/convent
 - PR title: like the header with capitalized type, e.g. `Feature: #ENT-20: Add login`
 - PR description: `Closes ENT-<nr>` at the top, follow `.github/pull_request_template.md`
 - Breaking changes: `[breaking-change]` after the ticket, e.g. `feature: #ENT-20: [breaking-change] …`
-- Never commit to `develop` or `main` directly. Never push or open a PR without the developer's OK.
+- **AI agents never run `git commit` or `git push`.** Suggest the message and commands; the developer runs them.
+  Blocked in Claude Code by `.claude/settings.json` (deny rules + `.claude/hooks/block-git-write.sh`).
+- Open a PR (`gh pr create --draft`) only after the developer pushed and asked for it. Never merge.
 
 ## Where documentation goes
 

@@ -1,6 +1,6 @@
 ---
 name: ent-finish
-description: Finish the current ticket – run checks, write docs/history/ENT-<nr>.md, update dev docs, commit and open the PR.
+description: Finish the current ticket – run checks, write docs/history/ENT-<nr>.md, update dev docs, prepare commit message and PR text for the developer.
 disable-model-invocation: true
 ---
 
@@ -37,18 +37,21 @@ Check whether the change makes existing docs wrong or incomplete and fix them in
 (see "Where documentation goes" in `AGENTS.md`): `docs/architecture.md`, `AGENTS.md` if a convention changed,
 Linear setup docs if setup changed (ask before editing Linear). Skip this if nothing changed.
 
-## 4. Commit and PR
+## 4. Hand over commit and push
 
-Show the developer the history file and a summary of the doc changes. After their OK:
+**Never run `git commit` or `git push`.** The developer always commits and pushes. A hook blocks both.
 
-- Commit (one or more): `<type>: #ENT-<nr>: <Subject>` with `Refs ENT-<nr>` in the body.
-- Push the branch. If a draft PR already exists (`gh pr view`), update its description; otherwise
-  create one to `develop` with `gh pr create --draft`:
-  - Title: `<Type>: #ENT-<nr>: <Subject>` (capitalized type)
-  - Body: `Closes ENT-<nr>` at the top, then fill `.github/pull_request_template.md`.
-    Under "How was it tested?" use the verification from the history file.
-- Ask the developer whether to mark it ready for review (`gh pr ready`).
+Show the developer the history file and a summary of the doc changes, then give them:
+
+- The commit message: `<type>: #ENT-<nr>: <Subject>`, blank line, `Refs ENT-<nr>`.
+- The commands to run themselves: `git add …`, `git commit`, `git push`.
+- The PR title `<Type>: #ENT-<nr>: <Subject>` and a PR description: `Closes ENT-<nr>` at the top, then
+  `.github/pull_request_template.md` filled in ("How was it tested?" = verification from the history file).
+
+Only after the developer has pushed and asks for it, you may open or update the draft PR with
+`gh pr create --draft` / `gh pr edit`. Never mark it ready or merge it.
 
 ## 5. Update Linear
 
-Add a comment to the ticket: 2–3 sentence summary, link to the PR, and the path `docs/history/ENT-<nr>.md`.
+After the developer's OK, add a comment to the ticket: 2–3 sentence summary, link to the PR (if open),
+and the path `docs/history/ENT-<nr>.md`.
