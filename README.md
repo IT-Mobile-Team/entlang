@@ -1,1 +1,1 @@
-Initial commit for Entlang repository.
+[Link to quick setup](https://linear.app/it-mobile-team/document/quick-setup-be9f75d24b42)
