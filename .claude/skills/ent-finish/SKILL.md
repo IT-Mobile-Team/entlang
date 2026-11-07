@@ -11,7 +11,7 @@ Follow the conventions in `AGENTS.md`. Take the ticket number from the branch na
 
 ## 1. Verify
 
-Run the checks for every app that changed (for `apps/api/`: see `apps/api/AGENTS.md`).
+Run the checks for every app that changed (see "Checks" in `AGENTS.md`).
 If something fails, fix it or stop and report. Don't continue with red checks.
 
 ## 2. Write the history file
@@ -26,6 +26,7 @@ Content comes from this conversation, the ticket and the diff (`git diff origin/
 - **Final scope**: what was actually built, compared to the ticket.
 - **Verification**: what was run and the result, plus manual checks.
 - **Open points**: anything left for follow-up tickets.
+- **Contributors**: add the AI share from `git ai stats origin/develop..HEAD` if git-ai is installed.
 
 Keep it short (aim for under 60 lines). No code dumps, no file-by-file changelog. Git already has that.
 Don't include secrets, tokens or personal data.
@@ -33,8 +34,8 @@ Don't include secrets, tokens or personal data.
 ## 3. Update dev docs
 
 Check whether the change makes existing docs wrong or incomplete and fix them in this PR
-(see "Where documentation goes" in `AGENTS.md`): `apps/<app>/README.md`, `docs/architecture.md`,
-`AGENTS.md` files if a convention changed. Skip this if nothing changed.
+(see "Where documentation goes" in `AGENTS.md`): `docs/architecture.md`, `AGENTS.md` if a convention changed,
+Linear setup docs if setup changed (ask before editing Linear). Skip this if nothing changed.
 
 ## 4. Commit and PR
 

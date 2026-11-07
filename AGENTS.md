@@ -1,11 +1,11 @@
 # Entlang – Agent Instructions
 
 Shared instructions for every AI agent (Claude Code, Codex, Cursor, Copilot, …) working in this repo.
-App-specific rules live in `apps/<app>/AGENTS.md` and apply in addition to this file.
+Setup and how-tos live in Linear (project "Entlang", e.g. "Quick Setup").
 
 ## Repo layout
 
-- `apps/api/` – NestJS API (see `apps/api/AGENTS.md`)
+- `apps/api/` – NestJS API (ESM, Vitest, Swagger UI at `/api`)
 - `apps/mobile/` – React Native app (planned, ENT-17)
 - `infrastructure/` – Docker / Compose
 - `postman/` – Postman collections
@@ -27,6 +27,17 @@ Without the skills (other agents): follow the steps in `.claude/skills/ent-start
 **Before starting a ticket**, read the history files of related tickets in `docs/history/`
 (linked issues, or `grep -ril <topic> docs/history/`). They record why things are the way they are.
 
+## Checks
+
+Before finishing, run the CI checks (`.github/workflows/ci.yml`) for every app that changed.
+API, from `apps/api/`: `npm run lint && npm run format:check && npm run build && npm test`
+
+## AI attribution (git-ai)
+
+Every developer has [git-ai](https://usegitai.com) installed. It records automatically which lines
+come from which agent (Git notes, synced on push/fetch, kept through squash merges by
+`.github/workflows/git-ai.yaml`). Nothing to do manually. Useful: `git ai blame <file>`, `git ai stats`.
+
 ## Git conventions
 
 Enforced by `commitlint.config.mjs`, `.githooks/` and `.github/workflows/conventions.yml`.
@@ -47,7 +58,7 @@ Enforced by `commitlint.config.mjs`, `.githooks/` and `.github/workflows/convent
 | Why this code is the way it is (non-obvious) | Short comment next to the code |
 | What a public/central function does | TSDoc (`/** … */`) on exported services and helpers only |
 | API endpoints | Swagger decorators, not hand-written docs |
-| Setup, commands, module overview of an app | `apps/<app>/README.md` |
+| Setup and how-tos | Linear |
 | How the apps fit together | `docs/architecture.md` |
 | What was decided in a ticket and why | `docs/history/ENT-<nr>.md` (written once, not edited after merge) |
 | What comes next | Linear |
