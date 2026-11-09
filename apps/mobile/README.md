@@ -39,6 +39,4 @@ Use `npm run lint:fix` or `npm run format` to apply fixes when needed.
 
 ## Expo template attribution
 
-This app includes code and assets from Expo's blank TypeScript template. Its
-copyright and MIT permission notice are in [LICENSE](LICENSE); this notice does
-not define a license for the Entlang project as a whole.
+This app includes code and assets from [Expo's blank TypeScript template](https://github.com/expo/expo/tree/main/templates/expo-template-blank-typescript).
