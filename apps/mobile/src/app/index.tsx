@@ -1,12 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Entlang</Text>
       <Text>The app is ready for development.</Text>
-      <StatusBar style="auto" />
     </View>
   );
 }

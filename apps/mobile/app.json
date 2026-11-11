@@ -17,6 +17,11 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false
+    },
+    "plugins": ["expo-router"],
+    "scheme": "entlang",
+    "experiments": {
+      "typedRoutes": true
     }
   }
 }

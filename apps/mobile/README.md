@@ -38,11 +38,20 @@ npm test
 
 Use `npm run lint:fix` or `npm run format` to apply fixes when needed.
 
+## Routing
+
+The app uses [Expo Router](https://docs.expo.dev/router/introduction/). Every
+file in `src/app` is a screen. `src/app/_layout.tsx` is the root layout and
+`src/app/index.tsx` is the start screen. Typed routes are enabled, so
+`expo start` generates route types in `.expo/types`.
+
 ## Tests
 
 Tests use [Jest](https://jestjs.io/) with the `jest-expo` preset and
 [React Native Testing Library](https://oss.callstack.com/react-native-testing-library/).
-Put test files next to the code as `*.test.tsx` or in a `__tests__` folder.
+Put test files next to the code as `*.test.tsx` or in a `__tests__` folder,
+but not inside `src/app`, because Expo Router treats every file there as a
+route. To test routes, use `renderRouter` from `expo-router/testing-library`.
 
 ```sh
 npm test            # run once
