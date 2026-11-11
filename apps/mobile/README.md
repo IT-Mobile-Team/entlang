@@ -33,9 +33,22 @@ simulator, use `npm run android` or `npm run ios` instead.
 npm run lint
 npm run format:check
 npm run typecheck
+npm test
 ```
 
 Use `npm run lint:fix` or `npm run format` to apply fixes when needed.
+
+## Tests
+
+Tests use [Jest](https://jestjs.io/) with the `jest-expo` preset and
+[React Native Testing Library](https://oss.callstack.com/react-native-testing-library/).
+Put test files next to the code as `*.test.tsx` or in a `__tests__` folder.
+
+```sh
+npm test            # run once
+npm run test:watch  # rerun on file changes
+npm run test:ci     # CI mode with coverage report in coverage/
+```
 
 ## Expo template attribution
 
