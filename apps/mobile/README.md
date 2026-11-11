@@ -38,6 +38,22 @@ npm test
 
 Use `npm run lint:fix` or `npm run format` to apply fixes when needed.
 
+## Folder structure
+
+```text
+src/
+  app/          Routes for Expo Router. Only screens and layouts.
+  components/   UI components shared by several features.
+  features/     Code for one feature, e.g. features/route-planning.
+  lib/          Code without UI, e.g. the API client and helpers.
+__tests__/      Tests for routes. Other tests sit next to their code.
+```
+
+Create a folder when it gets its first file. Import code from `src` with the
+`@/` alias, e.g. `import { Button } from '@/components/button'`, instead of
+long relative paths. The alias is set in `tsconfig.json`; Metro, Jest and
+ESLint read it from there.
+
 ## Routing
 
 The app uses [Expo Router](https://docs.expo.dev/router/introduction/). Every
