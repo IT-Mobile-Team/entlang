@@ -1,0 +1,19 @@
+apps/mobile/README.md
+  s_568183e2dd6cf9::t_6526253083e00c 42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "204780218cb10d61cc056d3fa74279197d902c35",
+  "prompts": {},
+  "sessions": {
+    "s_568183e2dd6cf9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c01c-e0de-79b2-ad24-09d9db2906c7",
+        "model": "gpt-6.1-terra"
+      },
+      "human_author": "Daniel Studera <daniel.studera@gmail.com>"
+    }
+  }
+}

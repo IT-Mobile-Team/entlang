@@ -1,0 +1,49 @@
+apps/mobile/package.json
+  s_568183e2dd6cf9::t_82be435480387b 24-25
+  s_568183e2dd6cf9::t_390cdeb64e223b 1,4-12,16-21,27-29
+  s_568183e2dd6cf9::t_d5476c29378610 2-3,22-23,26
+  s_568183e2dd6cf9::t_d2f3653232928a 13
+  s_568183e2dd6cf9::t_a4750f4fd32eca 15
+  s_568183e2dd6cf9::t_4749c9e83d2bc5 14
+apps/mobile/.prettierignore
+  s_568183e2dd6cf9::t_d5476c29378610 1-8
+  s_568183e2dd6cf9::t_82be435480387b 9-10
+apps/mobile/tsconfig.json
+  s_568183e2dd6cf9::t_390cdeb64e223b 1-6
+apps/mobile/app.json
+  s_568183e2dd6cf9::t_82be435480387b 5
+  s_568183e2dd6cf9::t_390cdeb64e223b 1-2,6-22
+  s_568183e2dd6cf9::t_d5476c29378610 3-4
+apps/mobile/App.tsx
+  s_568183e2dd6cf9::t_390cdeb64e223b 1-6,9-18,25-26
+  s_568183e2dd6cf9::t_d5476c29378610 7-8,19-24
+apps/mobile/.gitignore
+  s_568183e2dd6cf9::t_390cdeb64e223b 1-41
+apps/mobile/eslint.config.js
+  s_568183e2dd6cf9::t_d5476c29378610 1-9
+apps/mobile/.prettierrc
+  s_568183e2dd6cf9::t_d5476c29378610 1-8
+apps/mobile/index.ts
+  s_568183e2dd6cf9::t_390cdeb64e223b 1-8
+apps/mobile/README.md
+  s_568183e2dd6cf9::t_82be435480387b 8-15,39-44
+  s_568183e2dd6cf9::t_d5476c29378610 1-7,16-38
+apps/mobile/package-lock.json
+  s_568183e2dd6cf9::t_4487793433fe68 1-10129
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "0d49e291bbe89c00a6785b5e2775d7633b10c143",
+  "prompts": {},
+  "sessions": {
+    "s_568183e2dd6cf9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c01c-e0de-79b2-ad24-09d9db2906c7",
+        "model": "gpt-6.1-terra"
+      },
+      "human_author": "Daniel Studera <daniel.studera@gmail.com>"
+    }
+  }
+}

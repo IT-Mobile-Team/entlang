@@ -1,0 +1,21 @@
+apps/mobile/README.md
+  s_8bab816330e23c::t_233fd0ed5b72fa 41-56
+apps/mobile/tsconfig.json
+  s_8bab816330e23c::t_4254d415ebe4e0 5-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "c3a439dea929bc05e2ed42cf62956f17592495be",
+  "prompts": {},
+  "sessions": {
+    "s_8bab816330e23c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "efad30d9-b4c9-4195-9ae2-785ee039ba6f",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Daniel Studera <daniel.studera@gmail.com>"
+    }
+  }
+}
