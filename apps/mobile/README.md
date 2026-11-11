@@ -34,9 +34,14 @@ npm run lint
 npm run format:check
 npm run typecheck
 npm test
+npm run doctor
 ```
 
 Use `npm run lint:fix` or `npm run format` to apply fixes when needed.
+`npm run doctor` runs [Expo Doctor](https://docs.expo.dev/develop/tools/#expo-doctor),
+which checks that dependency versions match the Expo SDK and finds common
+setup problems. Install Expo packages with `npx expo install <package>` so the
+versions match the SDK.
 
 ## Folder structure
 
