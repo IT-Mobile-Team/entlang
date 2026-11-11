@@ -5,9 +5,10 @@ argument-hint: ENT-<nr>
 disable-model-invocation: true
 ---
 
-# Start ticket $ARGUMENTS
+# Start a ticket
 
-Follow the conventions in `AGENTS.md`. Stop and ask if the ticket is unclear or the argument is missing.
+The ticket number `ENT-<nr>` comes from the invocation (in Claude Code: $ARGUMENTS).
+Follow the conventions in `AGENTS.md`. Stop and ask if the ticket is unclear or the number is missing.
 
 ## 1. Load context
 
@@ -15,7 +16,7 @@ Follow the conventions in `AGENTS.md`. Stop and ask if the ticket is unclear or 
 - Read related tickets (blocked by, related to, parent) briefly.
 - Read `docs/history/ENT-<nr>.md` for every related ticket that has one. Also search
   `docs/history/` for the ticket's main topics (`grep -ril <topic> docs/history/`).
-- Read the dev docs for the affected area (`docs/architecture.md`, Linear setup docs).
+- Read the dev docs for the affected area (`docs/architecture.md`, root `README.md` for setup).
 
 ## 2. Create the branch
 

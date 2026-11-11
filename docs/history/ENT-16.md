@@ -10,17 +10,25 @@ and have context on what others built and why.
 
 ## Decisions
 
-- **Root `AGENTS.md` as the single entry point, `CLAUDE.md` imports it via `@AGENTS.md`**: one file is read by
+- **Root `AGENTS.md` as the single entry point**: one file is read by
   Claude Code, Codex, Cursor and Copilot. A file inside `docs/` would not cover `apps/`.
 - **Per-ticket history files in `docs/history/`**: agents get decision context without Linear access, it is
   versioned with the code and reviewed in the PR. One file per ticket avoids merge conflicts.
   Rejected: a central changelog (conflicts), raw agent transcripts (noise, possibly sensitive data).
 - **History ≠ dev docs**: history is a snapshot of why. Dev docs (`docs/architecture.md`,
-  TSDoc, Swagger, Linear setup docs) describe the current state and are updated in the same PR as the code.
+  TSDoc, Swagger, root `README.md`) describe the current state and are updated in the same PR as the code.
 - **Specs stay as Markdown in the Linear ticket**; the final spec ends up in the history file.
   Rejected for now: GitHub Spec Kit (too heavy), OpenSpec (extra tool; the history files cover the same need).
-- **Shared skills in `.claude/skills/`**: `/ent-start` and `/ent-finish` make every agent follow the same steps.
+- **Shared skills in `.agents/skills/`**: `ent-start` and `ent-finish` make every agent follow the same steps.
+  `.agents/skills/` is the open Agent Skills location; `.claude/skills` and `.github/skills` are symlinks so
+  Claude Code and Copilot find them too. Hooks, permissions and MCP config stay per tool.
   Rejected: plugin marketplace (only worth it with several repos).
+- **No app READMEs**: `apps/api/README.md` was removed. Its content (prerequisites, install, scripts, checks)
+  moved into the root `README.md` and `package.json`; one setup doc for all apps avoids drift.
+  App-specific details go into code comments, TSDoc and Swagger.
+- **Quick setup in the repo, not in Linear**: setup changes together with the code (env variables, services),
+  so it is updated and reviewed in the same PR and readable without Linear access. Linear keeps planning and
+  team how-tos. Rejected: setup only in Linear (easy to forget, drifts from the code).
 - **Developers always commit and push themselves**: last line of defence against unauthorised automated pushes.
   Enforced in Claude Code by deny rules and a PreToolUse hook, not only by instructions.
 - **git-ai for AI attribution**: line-level, automatic via agent hooks, stored in Git notes; a CI workflow
@@ -28,9 +36,9 @@ and have context on what others built and why.
 
 ## Final scope
 
-`AGENTS.md`, `CLAUDE.md`, skills `ent-start`/`ent-finish`, `docs/` structure with
+`AGENTS.md`, skills `ent-start`/`ent-finish`, `docs/` structure with
 history template, `.claude/settings.json`, git-ai CI workflow, `.gitignore` and PR template updates.
-App READMEs were dropped: setup docs stay in Linear.
+App READMEs were removed; quick setup moved from Linear into the root `README.md` (see Decisions).
 
 ## Verification
 

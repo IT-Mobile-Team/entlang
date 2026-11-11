@@ -1,7 +1,3 @@
-## How was it tested?
-
-## Screenshots (for UI changes)
-
 ## Checklist before "Ready for review"
 
 - [ ] Branch is named `feature/ent-<nr>-<title>`
@@ -10,4 +6,4 @@
 - [ ] CI is green
 - [ ] Breaking changes marked with `[breaking-change]` (if any)
 - [ ] `docs/history/ENT-<nr>.md` added (decisions, verification, open points)
-- [ ] Docs / README / AGENTS.md updated if behavior or conventions changed
+- [ ] Docs updated if behavior or conventions changed (`README.md`, `AGENTS.md`, `docs/`, Linear)

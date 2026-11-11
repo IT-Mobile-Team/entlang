@@ -35,11 +35,12 @@ Don't include secrets, tokens or personal data.
 
 Check whether the change makes existing docs wrong or incomplete and fix them in this PR
 (see "Where documentation goes" in `AGENTS.md`): `docs/architecture.md`, `AGENTS.md` if a convention changed,
-Linear setup docs if setup changed (ask before editing Linear). Skip this if nothing changed.
+the root `README.md` if setup changed (env variables, services, prerequisites). Skip this if nothing changed.
 
 ## 4. Hand over commit and push
 
-**Never run `git commit` or `git push`.** The developer always commits and pushes. A hook blocks both.
+**Never run `git commit` or `git push`.** The developer always commits and pushes.
+In Claude Code a hook blocks both; other agents must follow this rule themselves.
 
 Show the developer the history file and a summary of the doc changes, then give them:
 

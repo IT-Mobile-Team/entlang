@@ -1,7 +1,7 @@
 # Entlang – Agent Instructions
 
 Shared instructions for every AI agent (Claude Code, Codex, Cursor, Copilot, …) working in this repo.
-Setup and how-tos live in Linear (project "Entlang", e.g. "Quick Setup").
+Quick setup (install, run, env variables) lives in the root `README.md`. Planning and team how-tos live in Linear.
 
 ## Repo layout
 
@@ -11,7 +11,7 @@ Setup and how-tos live in Linear (project "Entlang", e.g. "Quick Setup").
 - `postman/` – Postman collections
 - `docs/` – cross-cutting dev docs and per-ticket history (see `docs/README.md`)
 
-Planning and team process docs (Git workflow, quick setup) live in Linear, team "Entlang".
+Planning and team process docs (e.g. Git workflow) live in Linear, team "Entlang".
 
 ## Workflow per ticket
 
@@ -22,8 +22,10 @@ Every change belongs to a Linear ticket `ENT-<nr>`.
 3. `/ent-finish` – verify, write `docs/history/ENT-<nr>.md`, update dev docs, prepare commit message and PR text.
 4. The developer commits and pushes.
 
-Without the skills (other agents): follow the steps in `.claude/skills/ent-start/SKILL.md` and
-`.claude/skills/ent-finish/SKILL.md` manually.
+The skills live in `.agents/skills/` (open Agent Skills format, read by Codex, Cursor, Gemini CLI).
+`.claude/skills` and `.github/skills` are symlinks to it for Claude Code and Copilot. Edit only `.agents/skills/`.
+Agents without skill support: follow `.agents/skills/<name>/SKILL.md` manually.
+Tool-specific config (hooks, permissions, MCP servers) stays per tool, e.g. `.claude/settings.json`.
 
 **Before starting a ticket**, read the history files of related tickets in `docs/history/`
 (linked issues, or `grep -ril <topic> docs/history/`). They record why things are the way they are.
@@ -61,7 +63,9 @@ Enforced by `commitlint.config.mjs`, `.githooks/` and `.github/workflows/convent
 | Why this code is the way it is (non-obvious) | Short comment next to the code |
 | What a public/central function does | TSDoc (`/** … */`) on exported services and helpers only |
 | API endpoints | Swagger decorators, not hand-written docs |
-| Setup and how-tos | Linear |
+| Setup: install, run, env variables (all apps) | Root `README.md` ("Quick setup") |
+| Team how-tos (Git workflow, Postman, …) | Linear |
+| Available scripts and their commands | `package.json` of the app |
 | How the apps fit together | `docs/architecture.md` |
 | What was decided in a ticket and why | `docs/history/ENT-<nr>.md` (written once, not edited after merge) |
 | What comes next | Linear |
@@ -69,6 +73,8 @@ Enforced by `commitlint.config.mjs`, `.githooks/` and `.github/workflows/convent
 Rules:
 
 - Keep docs as close to the code as possible. No separate doc file per source file.
+- No READMEs in `apps/*`. Setup for every app goes into the root `README.md`.
+- When setup changes (new env variable, new service, new prerequisite), update the root `README.md` in the same PR.
 - Don't copy facts that change (versions, ports, scripts) into docs; point to the source file instead.
 - When a change makes existing docs wrong, fix them in the same PR.
 - When a convention changes, update this file in the same PR.

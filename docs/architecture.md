@@ -1,6 +1,7 @@
 # Architecture
 
-How the parts of Entlang fit together. Keep this short and current. Details belong in the app READMEs.
+How the parts of Entlang fit together. Keep this short and current.
+Module details belong in code comments, TSDoc and Swagger, setup in the root `README.md` (see "Where documentation goes" in `AGENTS.md`).
 
 ## Components
 
