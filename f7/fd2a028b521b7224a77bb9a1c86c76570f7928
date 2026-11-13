@@ -1,0 +1,43 @@
+apps/mobile/package.json
+  s_87bb17aa7ec9ca::t_f29dd01274e36e 6-10
+  s_87bb17aa7ec9ca::t_33283b32ddc6e8 15-17,39-40,55-57
+apps/mobile/jest.setup.js
+  s_87bb17aa7ec9ca::t_9e6a935658d402 1-2
+  s_87bb17aa7ec9ca::t_7e7e7f345ca3b2 3-4
+apps/mobile/src/uniwind-types.d.ts
+  s_87bb17aa7ec9ca::t_a71d1debfda52a 1-10
+apps/mobile/app.json
+  s_87bb17aa7ec9ca::t_9e6a935658d402 21
+apps/mobile/.prettierignore
+  s_87bb17aa7ec9ca::t_e47405b3254c08 11
+apps/mobile/README.md
+  s_87bb17aa7ec9ca::t_b366d6050191dc 62-78,93-96
+apps/mobile/global.css
+  s_87bb17aa7ec9ca::t_4649851a0f4eba 1-2
+apps/mobile/metro.config.js
+  s_87bb17aa7ec9ca::t_21c462490e7ce0 1-10
+apps/mobile/package-lock.json
+  s_87bb17aa7ec9ca::t_096ed14d283e84 11-15,20-22,842-844,847,1723-1884,1898-1900,1903,1907,1914-1916,1921-1922,1995-1997,2001,2008-2010,2013,2019,2028-2030,2033,2042-2044,2047,2061-2063,2066,2122-2124,2130-2131,2135,2165-2167,2204-2206,2220-2222,2236-2238,2249-2251,2294-2296,2304-2306,2309-2310,2312,2316,2322-2324,2341-2343,2351-2352,2354,5488-5491,5494-5509,5512,5514-5516,5518-5549,5552-5563,5565-5569,5572-5583,5585,5588-5589,5592-6077,7419-7421,7470,8081-8089,8390-8402,9403-9405,9409-9411,9414-9415,9419,9421-9423,9425-9429,9470-9484,9486-9488,9491-9492,9513-9515,9534-9543,9545-9547,9550,9560-9562,9566,9576-9578,9592-9594,9597-9598,9613-9615,9622-9624,9627-9630,9634-9636,9648-9649,9662,9665-9667,9716-9718,9725-9727,9729-9732,9735-9738,9741-9742,10186,15131-15139,15760-15768,16232,16930,16947,18655-18673,19129-19400
+apps/mobile/src/app/_layout.tsx
+  s_87bb17aa7ec9ca::t_c26a96b24b9104 1-2
+apps/mobile/src/app/index.tsx
+  s_87bb17aa7ec9ca::t_176a343a3e1b08 1,5-6
+apps/mobile/tsconfig.json
+  s_87bb17aa7ec9ca::t_31ffd5a05cfc3e 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "f7fd2a028b521b7224a77bb9a1c86c76570f7928",
+  "prompts": {},
+  "sessions": {
+    "s_87bb17aa7ec9ca": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1d485-a973-7601-a666-d680ac6d92c5",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Daniel Studera <daniel.studera@gmail.com>"
+    }
+  }
+}
