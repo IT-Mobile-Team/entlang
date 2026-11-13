@@ -59,6 +59,23 @@ Create a folder when it gets its first file. Import code from `src` with the
 long relative paths. The alias is set in `tsconfig.json`; Metro, Jest and
 ESLint read it from there.
 
+## Styling
+
+The app uses [Uniwind](https://docs.uniwind.dev/) and Tailwind CSS v4. Use
+Tailwind classes with `className` on React Native components. The free,
+MIT-licensed Uniwind package is used. `global.css` contains the imports and
+`metro.config.js` configures the integration. Metro generates the Uniwind
+types in `src/uniwind-types.d.ts`. Keep this file in version control so typechecks
+work before Metro starts. Restart Metro after changing its configuration.
+
+The app currently uses a light appearance. Add dark styles when dark mode is
+introduced. Use complete class names, such as `active ? 'bg-green-500' :
+'bg-gray-500'`; dynamically assembled names like `bg-${color}-500` are not
+detected by Tailwind.
+
+For editor autocomplete, install the Tailwind CSS IntelliSense extension.
+It recognizes `className` by default.
+
 ## Routing
 
 The app uses [Expo Router](https://docs.expo.dev/router/introduction/). Every
@@ -73,6 +90,10 @@ Tests use [Jest](https://jestjs.io/) with the `jest-expo` preset and
 Put test files next to the code as `*.test.tsx` or in a `__tests__` folder,
 but not inside `src/app`, because Expo Router treats every file there as a
 route. To test routes, use `renderRouter` from `expo-router/testing-library`.
+The shared `jest.setup.js` stubs the global CSS import. Jest does not run the
+Uniwind Metro integration. Route
+tests verify rendering and behavior; verify applied styles in an emulator or
+on a device.
 
 ```sh
 npm test            # run once
