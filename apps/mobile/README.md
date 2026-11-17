@@ -1,0 +1,106 @@
+# Entlang mobile
+
+Expo and React Native app for Android and iOS.
+
+## Prerequisites
+
+- Use the Node.js version in the repository root's `.nvmrc`.
+- Use an Android device or emulator, or an iOS device or simulator. The iOS
+  simulator requires macOS and Xcode.
+- Install a version of Expo Go that supports the SDK version in `package.json`.
+  See [Expo's installation guidance](https://docs.expo.dev/troubleshooting/expo-go-version-mismatch/)
+  for the target device. On a physical iPhone, availability of a compatible Expo
+  Go build may depend on the App Store or TestFlight. A development build is
+  another option. An iOS simulator can install a compatible Expo Go build from
+  [expo.dev/go](https://expo.dev/go).
+
+## Install and start
+
+From `apps/mobile`:
+
+```sh
+npm ci
+npm start
+```
+
+Scan the QR code with Expo Go on Android or with the Camera app on iOS. The
+computer and phone should be on the same network. With a running emulator or
+simulator, use `npm run android` or `npm run ios` instead.
+
+## Checks
+
+```sh
+npm run lint
+npm run format:check
+npm run typecheck
+npm test
+npm run doctor
+```
+
+Use `npm run lint:fix` or `npm run format` to apply fixes when needed.
+`npm run doctor` runs [Expo Doctor](https://docs.expo.dev/develop/tools/#expo-doctor),
+which checks that dependency versions match the Expo SDK and finds common
+setup problems. Install Expo packages with `npx expo install <package>` so the
+versions match the SDK.
+
+## Folder structure
+
+```text
+src/
+  app/          Routes for Expo Router. Only screens and layouts.
+  components/   UI components shared by several features.
+  features/     Code for one feature, e.g. features/route-planning.
+  lib/          Code without UI, e.g. the API client and helpers.
+__tests__/      Tests for routes. Other tests sit next to their code.
+```
+
+Create a folder when it gets its first file. Import code from `src` with the
+`@/` alias, e.g. `import { Button } from '@/components/button'`, instead of
+long relative paths. The alias is set in `tsconfig.json`; Metro, Jest and
+ESLint read it from there.
+
+## Styling
+
+The app uses [Uniwind](https://docs.uniwind.dev/) and Tailwind CSS v4. Use
+Tailwind classes with `className` on React Native components. The free,
+MIT-licensed Uniwind package is used. `global.css` contains the imports and
+`metro.config.js` configures the integration. Metro generates the Uniwind
+types in `src/uniwind-types.d.ts`. Keep this file in version control so typechecks
+work before Metro starts. Restart Metro after changing its configuration.
+
+The app currently uses a light appearance. Add dark styles when dark mode is
+introduced. Use complete class names, such as `active ? 'bg-green-500' :
+'bg-gray-500'`; dynamically assembled names like `bg-${color}-500` are not
+detected by Tailwind.
+
+For editor autocomplete, install the Tailwind CSS IntelliSense extension.
+It recognizes `className` by default.
+
+## Routing
+
+The app uses [Expo Router](https://docs.expo.dev/router/introduction/). Every
+file in `src/app` is a screen. `src/app/_layout.tsx` is the root layout and
+`src/app/index.tsx` is the start screen. Typed routes are enabled, so
+`expo start` generates route types in `.expo/types`.
+
+## Tests
+
+Tests use [Jest](https://jestjs.io/) with the `jest-expo` preset and
+[React Native Testing Library](https://oss.callstack.com/react-native-testing-library/).
+Put test files next to the code as `*.test.tsx` or in a `__tests__` folder,
+but not inside `src/app`, because Expo Router treats every file there as a
+route. To test routes, use `renderRouter` from `expo-router/testing-library`.
+The shared `jest.setup.js` stubs the global CSS import. Jest does not run the
+Uniwind Metro integration. Route
+tests verify rendering and behavior; verify applied styles in an emulator or
+on a device.
+
+```sh
+npm test            # run once
+npm run test:watch  # rerun on file changes
+npm run test:ci     # CI mode with coverage report in coverage/
+```
+
+## Expo template attribution
+
+This app includes code and assets from [Expo's blank TypeScript template](https://github.com/expo/expo/tree/main/templates/expo-template-blank-typescript).
