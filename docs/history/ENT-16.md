@@ -1,6 +1,6 @@
 # ENT-16: Research and decide repository docs and AI-agent specs workflow
 
-Ticket: https://linear.app/it-mobile-team/issue/ENT-16 · PR: – (proposal, pending team review) · Date: 2026-11-07
+Ticket: https://linear.app/it-mobile-team/issue/ENT-16 · PR: [#4](https://github.com/IT-Mobile-Team/entlang/pull/4) · Date: 2026-11-07
 Builds on: ENT-14 (Git workflow)
 
 ## Goal
@@ -43,11 +43,14 @@ App READMEs were removed; quick setup moved from Linear into the root `README.md
 ## Verification
 
 - commitlint against the commit message
-- New Claude Code session: AGENTS.md loaded, both skills listed
-
-## Open points (team decision)
-
-- Update the Linear document "Monorepo Structure" after the team agrees
+- New Claude Code session: `AGENTS.md` loaded and both repository skills (`ent-start`
+  and `ent-finish`) were discovered.
+- The canonical skill files exist in `.agents/skills/`; `.claude/skills` and
+  `.github/skills` are Git symlinks (mode `120000`) resolving to
+  `../.agents/skills`.
+- The symlink targets were verified on disk with `readlink -f`. This verifies the
+  repository layout for Claude Code and GitHub Copilot; it does not claim an
+  independent Copilot runtime discovery test.
 
 ## Contributors
 

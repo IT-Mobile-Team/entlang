@@ -47,7 +47,6 @@ Show the developer the history file and a summary of the doc changes, then give 
 - The commit message: `<type>: #ENT-<nr>: <Subject>`, blank line, `Refs ENT-<nr>`.
 - The commands to run themselves: `git add …`, `git commit`, `git push`.
 - The PR title `<Type>: #ENT-<nr>: <Subject>` and a PR description: `Closes ENT-<nr>` at the top, then
-  `.github/pull_request_template.md` filled in ("How was it tested?" = verification from the history file).
 
 Only after the developer has pushed and asks for it, you may open or update the draft PR with
 `gh pr create --draft` / `gh pr edit`. Never mark it ready or merge it.
